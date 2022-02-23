@@ -25,7 +25,7 @@ function Header() {
 		<div className='header'>
 			<div className="header__left">
 				<img 
-					src="https://www.flaticon.com/svg/static/icons/svg/174/174857.svg" 
+					src="https://cliply.co/wp-content/uploads/2021/02/372102050_LINKEDIN_ICON_TRANSPARENT_400.gif" 
 					alt="" />
 
 				<div className="header__search">

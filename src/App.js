@@ -7,8 +7,10 @@ import {auth} from "./firebase"
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Login from "./Login";
+import Widgets from "./Widgets";
 
 function App() {
+  const userState = useSelector(selectUser);
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
@@ -27,7 +29,7 @@ function App() {
         dispatch(logout());
       }
     })
-  }, [dispatch]);
+  }, []);
 
 
   return (
@@ -40,7 +42,7 @@ function App() {
       <div className="app__body">
         <Sidebar />
         <Feed />
-        {/* Widgets */}
+        <Widgets />
       </div>
       )}
     </div>

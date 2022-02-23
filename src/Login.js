@@ -11,51 +11,57 @@ function Login() {
 	const [profilePic, setProfilePic] = useState("");
 	const dispatch = useDispatch();
 
-	const loginToApp = (e) => {
+	const loginToApp = async(e) => {
 		e.preventDefault();
-
-		auth.signInWithEmailAndPassword(email, password).then((userAuth) => {
-			dispatch(login({
-				email: userAuth.user.email,
-				uid: userAuth.user.uid,
-				displayName: userAuth.user.displayName,
-				profileUrl: userAuth.user.photoURL ,
+		try {
+		  const userAuth = await auth.signInWithEmailAndPassword(email, password);
+		  dispatch(
+			login({
+			  email: userAuth.user.email,
+			  uid: userAuth.user.uid,
+			  displayName: userAuth.user.displayName,
+			  photoUrl: userAuth.user.photoURL,
 			})
-		);
-	}).catch((error) => alert (error));
-};
-
-	const register = () => {
-		if (!name) {
-			return alert("Please enter a full name!");
+		  );
+		} catch (error) {
+		  alert(error);
 		}
+	  };
 
-		auth.createUserWithEmailAndPassword(email, password)
-			.then((userAuth) => {
-				userAuth.user.updateProfile({
-					displayName: name,
-					photoURL: profilePic,
-				})
-
-			.then(() => {
-				dispatch(
-				  login({
-					email: userAuth.user.email,
-					uid: userAuth.user.uid,
-					displayName: name,
-					photoUrl: profilePic,
-					})
-				);
-			});
-		}).catch((error) => alert(error));
-	};
-
+	const register = async() => {
+		if (!name) {
+		  return alert("Please enter a full name!");
+		}
+		try {
+		  const userAuth = await auth.createUserWithEmailAndPassword(
+			email,
+			password
+		  );
+	
+		  await userAuth.user.updateProfile({
+			displayName: name,
+			photoUrl: profilePic,
+		  });
+	
+		  dispatch(
+			login({
+			  email: userAuth.user.email,
+			  uid: userAuth.user.uid,
+			  displayName: name,
+			  photoUrl: profilePic,
+			})
+		  );
+		} catch (error) {
+		  console.log(error);
+		  alert(error);
+		}
+	  };
 
 	return (
 		<div className="login">
 			<img
 				src="https://logos-world.net/wp-content/uploads/2020/04/Linkedin-Logo.png"
-				alt=""
+				alt="linkedin_logo"
 			/>
 
 			<form>

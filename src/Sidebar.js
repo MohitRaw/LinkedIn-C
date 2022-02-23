@@ -19,7 +19,7 @@ function Sidebar() {
 				<img src="https://picsum.photos/id/1002/200/300" 
 					alt="" />
 				<Avatar src={user.photoUrl} className="sidebar__avatar">
-					{user.emai[0]} </Avatar>
+					{user.email[0]} </Avatar>
 				<h2>{user.displayName}</h2>
 				<h4>{user.email}</h4>
 			</div>
