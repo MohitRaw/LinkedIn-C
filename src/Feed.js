@@ -19,7 +19,7 @@ function Feed() {
 	const [posts, setPosts] = useState([]);
 
 	useEffect(() => {
-		db.collection("posts").orderBy('timestamp', 'desc').onSnapshot(snapshot => setPosts(snapshot.docs.map(doc => (
+		db.collection("posts").orderBy('timestamp', 'desc').onSnapshot(snapshot => setPosts(snapshot.docs.map((doc) => (
 			{
 				id: doc.id,
 				data: doc.data(),
@@ -28,7 +28,7 @@ function Feed() {
 		);
 	}, [])
 
-	const sendPost = e => {
+	const sendPost = (e) => {
 		e.preventDefault();
 
 		db.collection('posts').add({
@@ -41,7 +41,15 @@ function Feed() {
 
 		setInput("");
 	};
-
+	// const sendPost = (e) => {
+	// 	e.preventDefault();
+	// 	db.collection('posts').add({
+	// 		name: "ajkhkdjshakd",
+	// 		description: "mohit@gmail.com",
+	// 		message: "hello how are you",
+	// 		photoUrl: "",
+	// 	});
+	// };
 
 	return (
 		<div className="feed">

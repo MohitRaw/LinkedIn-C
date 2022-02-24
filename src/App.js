@@ -25,7 +25,6 @@ function App() {
           photoUrl: userAuth.photoURL,
         }))
       } else {
-        // use is logged out
         dispatch(logout());
       }
     })
